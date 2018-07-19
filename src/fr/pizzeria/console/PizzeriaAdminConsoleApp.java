@@ -60,31 +60,52 @@ public class PizzeriaAdminConsoleApp {
 				}
 				break;
 
+				//Modification d'une pizza dans le tableau existant
 			case 3:
 				System.out.println("Mise à jour d’une pizza");
+				System.out.println("Veuillez choisir le code de la pizza à modifier.");
+				String modifcode = scan.next();
+				System.out.println("Veuillez saisir le nouveau code");
+				String nvcode = scan.next();
+				System.out.println("Veuillez saisir le nouveau nom (sans espace) : ");
+				String nvlibelle = scan.next();
+				System.out.println("Veuillez saisir le nouveau prix : ");
+				double nvprix = scan.nextInt();
+				for (int i=0; i<pizzas.length;i++){
+					if((pizzas[i]!=null) && (pizzas[i].code.equals(modifcode))){
+						pizzas[i] = new Pizza(0, nvcode, nvlibelle, nvprix);
+					}
+				}
 				break;
-
+				//Supprimer une pizza
 			case 4:
 				System.out.println("Suppression d’une pizza");
+				System.out.println("Veuillez choisir le code de la pizza à surpprimer.");
+				String supprcode = scan.next();
+				for (int i=0; i<pizzas.length;i++){
+					if (pizzas[i]!=null && pizzas[i].getCode().equals(supprcode)){
+							pizzas[i] = null;
+					}
+				}
 				break;
 
 			case 99:
 				System.out.println("Aurevoir");
 				break;
-
+	
 			default:
 				System.out.println("Cette option de menu n'existe pas");
 				break;
 
-			}
-		} while (choix != 99);
+		}
+	} while (choix != 99);
 
 
-		scan.close();
+	scan.close();
 
 
 
 
-	}
+}
 
 }
