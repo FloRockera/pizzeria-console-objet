@@ -15,7 +15,7 @@ public class PizzeriaAdminConsoleApp {
 		int choix = 0;
 		Pizza pizza;
 
-		//Pour le tableau de pizza stocké dans la dao
+		//Pour le tableau de pizza stocké dans la dao, instancier
 		PizzaMemDao dao = new PizzaMemDao();
 		
 
@@ -42,38 +42,20 @@ public class PizzeriaAdminConsoleApp {
 
 				//Ajout d'une nouvelle pizza dans le tableau existant	
 			case 2:
-				
-				AjouterPizzaService service = new AjouterPizzaService();
-				service.executeUC(scan, dao);
-				
+				AjouterPizzaService ajservice = new AjouterPizzaService();
+				ajservice.executeUC(scan, dao);
 				break;
 
 				//Modification d'une pizza dans le tableau existant
 			case 3:
-				System.out.println("Mise à jour d’une pizza");
-				System.out.println("Veuillez choisir le code de la pizza à modifier.");
-				String modifcode = scan.next();
-				System.out.println("Veuillez saisir le nouveau code");
-				String nvcode = scan.next();
-				System.out.println("Veuillez saisir le nouveau nom (sans espace) : ");
-				String nvlibelle = scan.next();
-				System.out.println("Veuillez saisir le nouveau prix : ");
-				double nvprix = scan.nextInt();
-				pizza = new Pizza(0,nvcode,nvlibelle,nvprix);
-				//Appeler une methode "updatePizza" sur la dao
-				dao.updatePizza(modifcode,pizza);
-				
+				ModifierPizzaService modservice = new ModifierPizzaService();
+				modservice.executeUC(scan, dao);
 				break;
 				
 				//Supprimer une pizza
 			case 4:
-				System.out.println("Suppression d’une pizza");
-				System.out.println("Veuillez choisir le code de la pizza à surpprimer.");
-				String supprcode = scan.next();
-				
-				//Appeler une methode "deletePizza" sur la dao
-				dao.deletePizza(supprcode);
-				
+				SupprimerPizzaService supprservice = new SupprimerPizzaService();
+				supprservice.executeUC(scan, dao);
 				break;
 
 			case 99:
