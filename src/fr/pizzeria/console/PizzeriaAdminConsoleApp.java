@@ -28,16 +28,8 @@ public class PizzeriaAdminConsoleApp {
 
 			//Affiche la liste sans les null
 			case 1:
-				System.out.println("Liste des pizzas");
-				
-				//Appeler une methode "findAllPizzas" sur la dao
-				Pizza[] pizzas = dao.findAllPizzas();
-				
-				for (int i=0; i<pizzas.length;i++){
-					if (pizzas[i]!=null){
-						System.out.println(pizzas[i].getCode()+" -> "+ pizzas[i].getLibelle()+" ( "+pizzas[i].getPrix()+" ) ");
-					}
-				}
+				ListerPizzasService listservice = new ListerPizzasService();
+				listservice.executeUC(scan, dao);
 				break;
 
 				//Ajout d'une nouvelle pizza dans le tableau existant	
