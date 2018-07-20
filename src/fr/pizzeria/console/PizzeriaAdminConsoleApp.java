@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaAdminConsoleApp {
@@ -12,19 +13,11 @@ public class PizzeriaAdminConsoleApp {
 		Scanner scan = new Scanner(System.in);
 
 		int choix = 0;
+		Pizza pizza;
 
-
-		// Création du tableau avec les objets pizza
-		Pizza[] pizzas = new Pizza[100];
-		pizzas[0] = new Pizza(0,"PEP","Pépéroni",12.50);
-		pizzas[1] = new Pizza(1,"MAR","Margherita",14.00);
-		pizzas[2] = new Pizza(2,"REIN","La Reine",11.50);
-		pizzas[3] = new Pizza(3,"FRO","La 4 fromages",12.00);
-		pizzas[4] = new Pizza(4,"CAN","La cannibale",12.50);
-		pizzas[5] = new Pizza(5,"SAV","La savoyarde",13.00);
-		pizzas[6] = new Pizza(6,"ORI","L'orientale",13.50);
-		pizzas[7] = new Pizza(7,"IND","L'indienne",14.00);
-
+		//Pour le tableau de pizza stocké dans la dao
+		PizzaMemDao dao = new PizzaMemDao();
+		
 
 		// Saisir un choix sur le menu principal
 		do {
@@ -36,8 +29,12 @@ public class PizzeriaAdminConsoleApp {
 			//Affiche la liste sans les null
 			case 1:
 				System.out.println("Liste des pizzas");
+				
+				//Appeler une methode "findAllPizzas" sur la dao
+				Pizza[] pizzas = dao.findAllPizzas();
+				
 				for (int i=0; i<pizzas.length;i++){
-					if(pizzas[i]!=null){
+					if (pizzas[i]!=null){
 						System.out.println(pizzas[i].getCode()+" -> "+ pizzas[i].getLibelle()+" ( "+pizzas[i].getPrix()+" ) ");
 					}
 				}
@@ -52,12 +49,12 @@ public class PizzeriaAdminConsoleApp {
 				String libelle = scan.next();
 				System.out.println("Veuillez saisir le prix : ");
 				double prix = scan.nextInt();
-				for (int i=0; i<pizzas.length;i++){
-					if(pizzas[i]==null){
-						pizzas[i] = new Pizza(0, code, libelle, prix);
-						break;
-					}
-				}
+				
+				//Appeler une methode "saveNewPizza" sur la dao
+				pizza = new Pizza(0,code,libelle,prix);
+				
+				dao.saveNewPizza(pizza);
+				
 				break;
 
 				//Modification d'une pizza dans le tableau existant
@@ -71,22 +68,21 @@ public class PizzeriaAdminConsoleApp {
 				String nvlibelle = scan.next();
 				System.out.println("Veuillez saisir le nouveau prix : ");
 				double nvprix = scan.nextInt();
-				for (int i=0; i<pizzas.length;i++){
-					if((pizzas[i]!=null) && (pizzas[i].code.equals(modifcode))){
-						pizzas[i] = new Pizza(0, nvcode, nvlibelle, nvprix);
-					}
-				}
+				pizza = new Pizza(0,nvcode,nvlibelle,nvprix);
+				//Appeler une methode "updatePizza" sur la dao
+				dao.updatePizza(modifcode,pizza);
+				
 				break;
+				
 				//Supprimer une pizza
 			case 4:
 				System.out.println("Suppression d’une pizza");
 				System.out.println("Veuillez choisir le code de la pizza à surpprimer.");
 				String supprcode = scan.next();
-				for (int i=0; i<pizzas.length;i++){
-					if (pizzas[i]!=null && pizzas[i].getCode().equals(supprcode)){
-							pizzas[i] = null;
-					}
-				}
+				
+				//Appeler une methode "deletePizza" sur la dao
+				dao.deletePizza(supprcode);
+				
 				break;
 
 			case 99:
