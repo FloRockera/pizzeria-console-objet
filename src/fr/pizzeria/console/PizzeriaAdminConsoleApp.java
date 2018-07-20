@@ -42,18 +42,9 @@ public class PizzeriaAdminConsoleApp {
 
 				//Ajout d'une nouvelle pizza dans le tableau existant	
 			case 2:
-				System.out.println("Ajout d’une nouvelle pizza");
-				System.out.println("Veuillez saisir le code : ");
-				String code = scan.next();
-				System.out.println("Veuillez saisir le nom (sans espace) : ");
-				String libelle = scan.next();
-				System.out.println("Veuillez saisir le prix : ");
-				double prix = scan.nextInt();
 				
-				//Appeler une methode "saveNewPizza" sur la dao
-				pizza = new Pizza(0,code,libelle,prix);
-				
-				dao.saveNewPizza(pizza);
+				AjouterPizzaService service = new AjouterPizzaService();
+				service.executeUC(scan, dao);
 				
 				break;
 
