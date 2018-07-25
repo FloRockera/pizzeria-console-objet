@@ -96,7 +96,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 
 	// Méthode toString
-	@Override
+	//@toString(apres"->",uppercase=true);
 	public String toString() {
 		return "PizzaMemDao [pizzas=" + pizzas + "]";
 	}
