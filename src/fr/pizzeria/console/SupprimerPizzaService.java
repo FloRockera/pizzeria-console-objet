@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.PizzaMemDao;
 
 public class SupprimerPizzaService extends MenuService {
+	private String supprcode;
 
 	@Override
 	public void executeUC(Scanner scan, PizzaMemDao dao) {

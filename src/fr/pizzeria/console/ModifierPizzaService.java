@@ -19,7 +19,7 @@ public class ModifierPizzaService extends MenuService {
 		String nvlibelle = scan.next();
 		System.out.println("Veuillez saisir le nouveau prix : ");
 		double nvprix = scan.nextInt();
-		Pizza pizza = new Pizza(0, nvcode, nvlibelle, nvprix);
+		Pizza pizza = new Pizza(0, nvcode, nvlibelle, null, nvprix);
 
 		// Appeler une methode "updatePizza" sur la dao
 		dao.updatePizza(modifcode, pizza);

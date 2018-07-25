@@ -3,11 +3,13 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exceptions.DaoException;
+import fr.pizzeria.exceptions.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaAdminConsoleApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws StockageException {
 
 
 		Scanner scan = new Scanner(System.in);
@@ -35,7 +37,12 @@ public class PizzeriaAdminConsoleApp {
 				//Ajout d'une nouvelle pizza dans le tableau existant	
 			case 2:
 				AjouterPizzaService ajservice = new AjouterPizzaService();
-				ajservice.executeUC(scan, dao);
+				try {
+					ajservice.executeUC(scan, dao);
+				} 
+				catch (StockageException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 
 				//Modification d'une pizza dans le tableau existant
