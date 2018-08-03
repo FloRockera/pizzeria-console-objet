@@ -10,7 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import fr.pizzeria.console.AjouterPizzaService;
+import fr.pizzeria.console.service.AjouterPizzaService;
 import fr.pizzeria.exceptions.StockageException;
 
 public class DemoRuleScanner {

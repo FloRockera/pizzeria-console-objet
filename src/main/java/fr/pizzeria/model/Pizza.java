@@ -8,31 +8,36 @@ public class Pizza {
 	public double prix;
 	private CategoriePizza categ;
 
-	public CategoriePizza getCateg(){
-	return categ;
+	public CategoriePizza getCateg() {
+		return categ;
 	}
-	
+
+	public Pizza() {
+		super();
+	}
+
 	// constructeur Pizza
 	public Pizza(int nvid, String nvcode, String nvlibelle, CategoriePizza nvCateg, double nvprix) {
 		id = nvid;
 		code = nvcode;
 		libelle = nvlibelle;
-		categ=nvCateg;
+		categ = nvCateg;
 		prix = nvprix;
 	}
-	
-	static int compteur;
-	public Pizza(String code,String libelle,double prix,CategoriePizza categ){
-		compteur++;
-		this.id=compteur;
-		this.code=code;
-		this.libelle=libelle;
-		this.prix=prix;
-		this.categ=categ;
-	}
-	
 
-	//Méthodes lecture/écriture : Générer les getters and setters avec le clic droit dans "sources"
+	static int compteur;
+
+	public Pizza(String code, String libelle, double prix, CategoriePizza categ) {
+		compteur++;
+		this.id = compteur;
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.categ = categ;
+	}
+
+	// Méthodes lecture/écriture : Générer les getters and setters avec le clic
+	// droit dans "sources"
 	public int getId() {
 		return id;
 	}
@@ -64,13 +69,16 @@ public class Pizza {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	
+
+	public void setCateg(CategoriePizza categ) {
+		this.categ = categ;
+	}
+
 	// Methode toString
 	@Override
 	public String toString() {
 		return "Pizza [id=" + id + ", code=" + code + ", libelle=" + libelle + ", prix=" + prix + ", categ=" + categ
 				+ "]";
 	}
-
 
 }

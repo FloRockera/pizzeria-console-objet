@@ -1,15 +1,15 @@
-package fr.pizzeria.console;
+package fr.pizzeria.console.service;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaService extends MenuService {
 
 	@Override
-	public void executeUC(Scanner scan, PizzaMemDao dao) {
-		
+	public void executeUC(Scanner scan, IPizzaDao dao) {
+
 		System.out.println("Mise à jour d’une pizza");
 		System.out.println("Veuillez choisir le code de la pizza à modifier.");
 		String modifcode = scan.next();
