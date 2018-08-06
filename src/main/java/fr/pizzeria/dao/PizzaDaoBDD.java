@@ -79,7 +79,7 @@ public class PizzaDaoBDD implements IPizzaDao {
 			statement.setString(2, pizza.getLibelle());
 			statement.setString(3, pizza.getCateg().name());
 			statement.setDouble(4, pizza.getPrix());
-			int statut = statement.executeUpdate();
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,14 +88,37 @@ public class PizzaDaoBDD implements IPizzaDao {
 
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = creerConnexion();
+			PreparedStatement statement = connection
+					.prepareStatement("UPDATE pizza (CODE, NOM, CATEGORIE, PRIX) SET values(?,?,?,?)");
+			statement.setString(1, pizza.getCode());
+			statement.setString(2, pizza.getLibelle());
+			statement.setString(3, pizza.getCateg().name());
+			statement.setDouble(4, pizza.getPrix());
+			statement.executeUpdate();
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deletePizza(String codePizza) {
-		// TODO Auto-generated method stub
+		if (pizzaExists(codePizza)) {
+			try (PreparedStatement statement = connexion.prepareStatement("delete from pizzas where code=?")) {
+				statement.setString(1, codePizza);
 
+				try (ResultSet resultSet = statement.executeQuery()) {
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("La pizza que vous voulez supprimez n'existe pas");
+		}
 	}
 
 	@Override
