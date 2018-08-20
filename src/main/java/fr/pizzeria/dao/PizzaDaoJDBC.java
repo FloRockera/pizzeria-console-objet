@@ -11,7 +11,7 @@ import java.util.List;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoBDD implements IPizzaDao {
+public class PizzaDaoJDBC implements IPizzaDao {
 
 	public Connection creerConnexion() throws SQLException {
 
@@ -106,7 +106,7 @@ public class PizzaDaoBDD implements IPizzaDao {
 	@Override
 	public void deletePizza(String codePizza) {
 		if (pizzaExists(codePizza)) {
-			try (PreparedStatement statement = connexion.prepareStatement("delete from pizzas where code=?")) {
+			try (PreparedStatement statement = connection.prepareStatement("delete from pizzas where code=?")) {
 				statement.setString(1, codePizza);
 
 				try (ResultSet resultSet = statement.executeQuery()) {

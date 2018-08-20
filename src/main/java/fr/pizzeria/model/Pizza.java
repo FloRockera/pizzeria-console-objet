@@ -1,14 +1,35 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pizza")
 public class Pizza {
 
-	public int id;
-	public String code;
-	public String libelle;
-	public double prix;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int id;
+
+	@Column(name = "CODE")
+	private String code;
+
+	@Column(name = "LIBELLE")
+	private String libelle;
+
+	// @Rule(min = 10)
+	@Column(name = "PRIX")
+	private double prix;
+
+	@Column(name = "CATEGORIE")
 	private CategoriePizza categ;
 
-	public CategoriePizza getCateg() {
+	private CategoriePizza getCateg() {
 		return categ;
 	}
 

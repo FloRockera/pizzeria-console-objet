@@ -3,7 +3,7 @@ package fr.pizzeria.console.service;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzaDaoBDD;
+import fr.pizzeria.dao.PizzaDaoJDBC;
 import fr.pizzeria.exceptions.StockageException;
 import fr.pizzeria.model.Pizza;
 
@@ -17,7 +17,7 @@ public class PizzeriaAdminConsoleApp {
 		Pizza pizza;
 
 		// Pour le tableau de pizza stocké dans la dao, instancier
-		IPizzaDao dao = new PizzaDaoBDD();
+		IPizzaDao dao = new PizzaDaoJDBC();
 
 		// Saisir un choix sur le menu principal
 		do {
